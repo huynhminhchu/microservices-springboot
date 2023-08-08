@@ -55,3 +55,7 @@ List<Object> objects = response.getBody();
 docker pull eclipse-temurin:20-jdk
 docker run -it --rm eclipse-temurin:20-jdk java -Xmx600m -XX:+PrintFlagsFinal | grep "size_t MaxHeapSize"
 
+# Building maven multi module
+```java
+mvn archetype:generate -DgroupId=mc.microservices -DartifactId=microservices-springboot
+```

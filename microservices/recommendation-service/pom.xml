@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>mc.microservices.core</groupId>
-    <artifactId>recomendation-service</artifactId>
+    <artifactId>recommendation-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>recomendation-service</name>
     <description>recomendation-service</description>
