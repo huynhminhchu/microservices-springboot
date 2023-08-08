@@ -8,6 +8,8 @@
         <version>3.1.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+    <!-- <packaging>jar</packaging> -->
+
     <groupId>mc.microservices.util</groupId>
     <artifactId>util</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -35,17 +37,17 @@
         <dependency>
             <groupId>mc.microservices.api</groupId>
             <artifactId>api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
-    <build>
+    <!-- <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
+            </plugin>  
         </plugins>
-    </build>
+    </build> -->
 
 </project>

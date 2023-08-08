@@ -39,12 +39,12 @@
         <dependency>
             <groupId>mc.microservices.api</groupId>
             <artifactId>api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>mc.microservices.util</groupId>
             <artifactId>util</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
