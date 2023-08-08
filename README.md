@@ -46,3 +46,12 @@ List<Object> objects = response.getBody();
 ```
 
 # Add exception handling
+
+# Deploy microservices using Docker
+## Setting max heap size
+- By default, max heap size inside a jdk container = 1/4 host memory.
+- Add -Xmx option to set the limit
+
+docker pull eclipse-temurin:20-jdk
+docker run -it --rm eclipse-temurin:20-jdk java -Xmx600m -XX:+PrintFlagsFinal | grep "size_t MaxHeapSize"
+
