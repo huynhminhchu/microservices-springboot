@@ -59,3 +59,36 @@ docker run -it --rm eclipse-temurin:20-jdk java -Xmx600m -XX:+PrintFlagsFinal | 
 ```java
 mvn archetype:generate -DgroupId=mc.microservices -DartifactId=microservices-springboot
 ```
+
+# Dockerize
+```dockerfile
+FROM eclipse-temurin:20-jdk as builder
+WORKDIR workspace
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} app.jar
+RUN java -Djarmode=layertools -jar app.jar extract
+
+FROM eclipse-temurin:20-jdk
+WORKDIR workspace
+COPY --from=builder workspace/dependencies/ ./
+COPY --from=builder workspace/spring-boot-loader/ ./
+COPY --from=builder workspace/snapshot-dependencies/ ./
+COPY --from=builder workspace/application/ ./
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher"]
+```
+
+```bash
+cd microservices-springboot
+mvn clean install -DskipTests
+docker build -t product-service:v1 microservices/product-service/
+docker build -t review-service:v1 microservices/review-service/
+docker build -t recommendation-service:v1 microservices/recommendation-service/ 
+```
+
+Test
+```
+docker run --rm -p 9080:8080 -e "SPRING_PROFILES_ACTIVE=docker" product-service:v1    
+```
