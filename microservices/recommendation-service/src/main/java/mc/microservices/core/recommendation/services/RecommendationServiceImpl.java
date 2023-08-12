@@ -1,4 +1,4 @@
-package mc.microservices.core.recomendation.services;
+package mc.microservices.core.recommendation.services;
 
 import mc.microservices.api.core.recomendation.Recommendation;
 import mc.microservices.api.core.recomendation.RecommendationService;

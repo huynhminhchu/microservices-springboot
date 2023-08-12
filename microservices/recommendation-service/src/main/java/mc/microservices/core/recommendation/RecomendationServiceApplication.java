@@ -1,9 +1,8 @@
-package mc.microservices.core.recomendation;
+package mc.microservices.core.recommendation;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Component;
 
 @SpringBootApplication
 @ComponentScan(basePackages = "mc")

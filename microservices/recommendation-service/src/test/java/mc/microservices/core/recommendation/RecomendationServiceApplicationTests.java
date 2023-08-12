@@ -1,4 +1,4 @@
-package mc.microservices.core.recomendation;
+package mc.microservices.core.recommendation;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
