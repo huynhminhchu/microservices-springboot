@@ -109,7 +109,7 @@ class PersistenceTests extends MongoTestBase {
         assertEquals(expectedEntity.getProductId(),        actualEntity.getProductId());
         assertEquals(expectedEntity.getRecommendationId(), actualEntity.getRecommendationId());
         assertEquals(expectedEntity.getAuthor(),           actualEntity.getAuthor());
-        assertEquals(expectedEntity.getRating(),           actualEntity.getRating());
+        assertEquals(expectedEntity.getRate(),           actualEntity.getRate());
         assertEquals(expectedEntity.getContent(),          actualEntity.getContent());
     }
 }

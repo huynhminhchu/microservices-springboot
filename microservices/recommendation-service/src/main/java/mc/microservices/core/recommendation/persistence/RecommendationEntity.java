@@ -20,7 +20,7 @@ public class RecommendationEntity {
     private int rate;
     private String content;
 
-    public RecommendationEntity(int productId, int recommendationId, String author, int rate, String content, String serviceAddress) {
+    public RecommendationEntity(int productId, int recommendationId, String author, int rate, String content) {
         this.productId = productId;
         this.recommendationId = recommendationId;
         this.author = author;

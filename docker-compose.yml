@@ -26,5 +26,33 @@ services:
       - "8080:8080"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
- 
 
+  mongodb:
+    image: mongo:6.0.4
+    mem_limit: 512m
+    ports:
+      - "27017:27017"
+    command: mongod
+    healthcheck:
+      test: "mongostat -n 1"
+      interval: 5s
+      timeout: 2s
+      retries: 60
+
+  postgres:
+    image: postgres:15.3
+    restart: always
+    mem_limit: 512m
+    environment:
+      POSTGRES_USER: mc
+      POSTGRES_PASSWORD: Chudeptrai123
+      POSTGRES_DB: review-db
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: "pg_isready -U mc"
+      interval: 5s
+      timeout: 2s
+      retries: 60
