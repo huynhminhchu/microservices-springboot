@@ -1,14 +1,30 @@
 server:
   port: 7003
+# Strongly recommend to set this property to "none" in a production environment!
 
 logging:
   level:
     root: INFO
     mc.microservices: DEBUG
+
+spring:
+  datasource:
+    url: jdbc:postgresql://192.168.1.99:5432/review-db
+    username: mc
+    password: Chudeptrai123
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
 ---
 spring:
   config:
     activate:
       on-profile: docker
+  datasource:
+    url: jdbc:postgresql://postgres/review-db
 server:
   port: 8080

@@ -1,6 +1,14 @@
 server:
   port: 7001
 
+spring.data.mongodb:
+  host: 192.168.1.99
+  port: 27017
+  database: product-db
+  username: root
+  password: "@Chudeptrai123"
+  authentication-database: admin
+
 logging:
   level:
     root: INFO
@@ -11,5 +19,8 @@ spring:
   config:
     activate:
       on-profile: docker
+  data:
+    mongodb:
+      host: mongodb
 server:
   port: 8080
