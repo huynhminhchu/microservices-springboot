@@ -22,5 +22,8 @@ spring:
   data:
     mongodb:
       host: mongodb
+      database: product-db
+      username: root
+      password: "@Chudeptrai123"
 server:
   port: 8080

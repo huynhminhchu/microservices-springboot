@@ -21,5 +21,8 @@ spring:
   data:
     mongodb:
       host: mongodb
+      database: recommendation-db
+      username: root
+      password: "@Chudeptrai123"
 server:
   port: 8080

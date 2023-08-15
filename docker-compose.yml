@@ -6,18 +6,26 @@ services:
     mem_limit: 512m
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - mongodb
 
   recommendation:
     build: microservices/recommendation-service
     mem_limit: 512m
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - mongodb
+
 
   review:
     build: microservices/review-service
     mem_limit: 512m
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      postgres:
+        condition: service_healthy
 
   product-composite:
     build: microservices/product-composite-service
@@ -28,21 +36,18 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
 
   mongodb:
-    image: mongo:6.0.4
-    mem_limit: 512m
+    image: mongo:6.0.8
     ports:
       - "27017:27017"
     command: mongod
-    healthcheck:
-      test: "mongostat -n 1"
-      interval: 5s
-      timeout: 2s
-      retries: 60
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "root"
+      MONGO_INITDB_ROOT_PASSWORD: "@Chudeptrai123"
+      MONGO_INITDB_DATABASE: "product-db"
 
   postgres:
     image: postgres:15.3
     restart: always
-    mem_limit: 512m
     environment:
       POSTGRES_USER: mc
       POSTGRES_PASSWORD: Chudeptrai123
