@@ -81,6 +81,25 @@ logging:
     root: INFO
     mc.microservices: INFO
 
+spring:
+  cloud:
+    stream:
+      default-binder: rabbit
+      bindings:
+        products-out-0:
+          destination: products
+        recommendations-out-0:
+          destination: recommendations
+        reviews-out-0:
+          destination: reviews
+      kafka:
+        binder:
+          brokers: kafka
+  rabbitmq:
+    host: rabbitmq
+    username: guest
+    password: guest
+
 ---
 spring.config.activate.on-profile: docker
 server.port: 8080

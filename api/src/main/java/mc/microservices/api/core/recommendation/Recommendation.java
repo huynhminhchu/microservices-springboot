@@ -1,4 +1,4 @@
-package mc.microservices.api.core.recomendation;
+package mc.microservices.api.core.recommendation;
 
 public class Recommendation {
     private int productId;

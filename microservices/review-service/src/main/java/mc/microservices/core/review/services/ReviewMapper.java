@@ -17,8 +17,7 @@ public interface ReviewMapper {
     Review entityToApi(ReviewEntity entity);
 
     @Mappings({
-            @Mapping(target = "id", ignore = true),
-            @Mapping(target = "version", ignore = true)
+            @Mapping(target = "id", ignore = true)
     })
     ReviewEntity apiToEntity(Review api);
 

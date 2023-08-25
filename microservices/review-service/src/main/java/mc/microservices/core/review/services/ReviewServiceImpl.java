@@ -8,8 +8,8 @@ import mc.microservices.core.review.persistence.ReviewRepository;
 import mc.microservices.util.http.ServiceUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @RestController
 public class ReviewServiceImpl implements ReviewService {
@@ -26,29 +26,29 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public List<Review> getReviews(int productId) {
+    public Flux<Review> getReviews(int productId) {
         if (productId < 1) {
             throw new InvalidInputException("Invalid productId: " + productId);
         }
-        List<ReviewEntity> entities = reviewRepository.findByProductId(productId);
-        List<Review> reviews = mapper.entityListToApiList(entities);
-
-        reviews.forEach(r -> {
-            r.setServiceAddress(serviceUtil.getServiceAddress());
-        });
-        return reviews;
+        return reviewRepository.findByProductId(productId)
+                                    .map(mapper::entityToApi)
+                                    .map(this::setServiceAddress);
     }
 
     @Override
-    public Review createReview(Review body) {
+    public Mono<Review> createReview(Review body) {
         ReviewEntity reviewEntity = mapper.apiToEntity(body);
-        ReviewEntity newReview = reviewRepository.save(reviewEntity);
-        return mapper.entityToApi(newReview);
+        return reviewRepository.save(reviewEntity).map(mapper::entityToApi);
     }
 
     @Override
-    public void deleteReviews(int productId) {
-        List<ReviewEntity> reviewEntities = reviewRepository.findByProductId(productId);
-        reviewRepository.deleteAll(reviewEntities);
+    public Mono<Void> deleteReviews(int productId) {
+        Flux<ReviewEntity> reviewEntities = reviewRepository.findByProductId(productId);
+        return reviewRepository.deleteAll(reviewEntities);
+    }
+
+    Review setServiceAddress(Review review){
+        review.setServiceAddress(serviceUtil.getServiceAddress());
+        return review;
     }
 }

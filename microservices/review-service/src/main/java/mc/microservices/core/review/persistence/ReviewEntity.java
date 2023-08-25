@@ -1,18 +1,21 @@
 package mc.microservices.core.review.persistence;
 
-import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
-@Entity
-@Table(name = "reviews", indexes = { @Index(name = "reviews_unique_idx", unique = true, columnList = "productId,reviewId")})
+
+@Table(value = "reviews")
 public class ReviewEntity {
 
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
 
-    @Version
-    private int version;
+    @Column(value = "product_id")
     private int productId;
+
+    @Column(value = "review_id")
     private int reviewId;
     private String author;
     private String subject;
@@ -78,11 +81,11 @@ public class ReviewEntity {
         this.content = content;
     }
 
-    public int getVersion() {
-        return version;
-    }
-
-    public void setVersion(int version) {
-        this.version = version;
-    }
+//    public int getVersion() {
+//        return version;
+//    }
+//
+//    public void setVersion(int version) {
+//        this.version = version;
+//    }
 }

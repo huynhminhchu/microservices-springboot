@@ -7,18 +7,37 @@ logging:
     root: INFO
     mc.microservices: DEBUG
 
+#spring:
+#  datasource:
+#    url: jdbc:postgresql://192.168.1.99:5432/review-db
+#    username: mc
+#    password: Chudeptrai123
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+#        format_sql: true
 spring:
-  datasource:
-    url: jdbc:postgresql://192.168.1.99:5432/review-db
+  r2dbc:
+    url: r2dbc:postgresql://192.168.1.99:5432/review-db
     username: mc
     password: Chudeptrai123
-  jpa:
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: true
+  cloud:
+    stream:
+      default-binder: rabbit
+      bindings:
+        messageProcessor-in-0:
+          destination: reviews
+      kafka:
+        binder:
+          brokers: 192.168.1.99:9092
+  rabbitmq:
+    host: 192.168.1.99
+    port: 5672
+    username: guest
+    password: guest
 ---
 spring:
   config:
@@ -26,5 +45,18 @@ spring:
       on-profile: docker
   datasource:
     url: jdbc:postgresql://postgres/review-db
+  cloud:
+    stream:
+      default-binder: rabbit
+      bindings:
+        messageProcessor-in-0:
+          destination: reviews
+      kafka:
+        binder:
+          brokers: kafka
+  rabbitmq:
+    host: rabbitmq
+    username: guest
+    password: guest
 server:
   port: 8080
