@@ -1,6 +1,6 @@
 package mc.microservices.core.recommendation;
 
-import mc.microservices.api.core.recomendation.Recommendation;
+import mc.microservices.api.core.recommendation.Recommendation;
 import mc.microservices.core.recommendation.persistence.RecommendationRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -56,7 +56,7 @@
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-mongodb -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+            <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
             <version>3.1.2</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.testcontainers/testcontainers -->
@@ -85,7 +85,17 @@
             <artifactId>postgresql</artifactId>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
+            <version>4.0.4</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-stream-kafka -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-stream-kafka</artifactId>
+            <version>4.0.4</version>
+        </dependency>
     </dependencies>
 
     <build>

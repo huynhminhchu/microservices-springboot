@@ -13,6 +13,22 @@ logging:
   level:
     root: INFO
     mc.microservices: DEBUG
+
+spring:
+  cloud:
+    stream:
+      default-binder: rabbit
+      bindings:
+        messageProcessor-in-0:
+          destination: recommendations
+      kafka:
+        binder:
+          brokers: 192.168.1.99:9092
+  rabbitmq:
+    host: 192.168.1.99
+    port: 5672
+    username: guest
+    password: guest
 ---
 spring:
   config:
@@ -24,5 +40,19 @@ spring:
       database: recommendation-db
       username: root
       password: "@Chudeptrai123"
+  cloud:
+    stream:
+      default-binder: rabbit
+      bindings:
+        messageProcessor-in-0:
+          destination: recommendations
+      kafka:
+        binder:
+          brokers: kafka
+  rabbitmq:
+    host: rabbitmq
+    username: guest
+    password: guest
+
 server:
   port: 8080

@@ -2,7 +2,7 @@ package mc.microservices.core.recommendation.services;
 
 import java.util.List;
 
-import mc.microservices.api.core.recomendation.Recommendation;
+import mc.microservices.api.core.recommendation.Recommendation;
 import mc.microservices.core.recommendation.persistence.RecommendationEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
