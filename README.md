@@ -82,7 +82,7 @@ ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher"]
 
 ```bash
 cd microservices-springboot
-mvn clean install -DskipTests
+mvn clean install -Dmaven.test.skip
 docker build -t product-service:v1 microservices/product-service/
 docker build -t review-service:v1 microservices/review-service/
 docker build -t recommendation-service:v1 microservices/recommendation-service/ 
@@ -91,4 +91,9 @@ docker build -t recommendation-service:v1 microservices/recommendation-service/
 Test
 ```
 docker run --rm -p 9080:8080 -e "SPRING_PROFILES_ACTIVE=docker" product-service:v1    
+```
+
+Run project
+```bash
+mvn clean install -Dmaven.test.skip
 ```
