@@ -49,9 +49,9 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
   private final WebClient webClient;
   private final ObjectMapper mapper;
 
-  private final String productServiceUrl;
-  private final String recommendationServiceUrl;
-  private final String reviewServiceUrl;
+  private static final String PRODUCT_SERVICE_URL = "http://product";
+  private static final String RECOMMENDATION_SERVICE_URL = "http://recommendation";
+  private static final String REVIEW_SERVICE_URL = "http://review";
 
   private final StreamBridge streamBridge;
 
@@ -80,9 +80,6 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
     this.mapper = mapper;
     this.streamBridge = streamBridge;
 
-    productServiceUrl        = "http://" + productServiceHost + ":" + productServicePort;
-    recommendationServiceUrl = "http://" + recommendationServiceHost + ":" + recommendationServicePort;
-    reviewServiceUrl         = "http://" + reviewServiceHost + ":" + reviewServicePort;
   }
 
   @Override
@@ -96,7 +93,7 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
 
   @Override
   public Mono<Product> getProduct(int productId) {
-    String url = productServiceUrl + "/product/" + productId;
+    String url = PRODUCT_SERVICE_URL + "/product/" + productId;
     LOG.debug("Will call the getProduct API on URL: {}", url);
 
     return webClient.get().uri(url).retrieve().bodyToMono(Product.class).log(LOG.getName(), FINE).onErrorMap(WebClientResponseException.class, ex -> handleException(ex));
@@ -121,7 +118,7 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
   @Override
   public Flux<Recommendation> getRecommendations(int productId) {
 
-    String url = recommendationServiceUrl + "/recommendation?productId=" + productId;
+    String url = RECOMMENDATION_SERVICE_URL + "/recommendation?productId=" + productId;
 
     LOG.debug("Will call the getRecommendations API on URL: {}", url);
 
@@ -148,7 +145,7 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
   @Override
   public Flux<Review> getReviews(int productId) {
 
-    String url = reviewServiceUrl + "/review?productId=" + productId;
+    String url = REVIEW_SERVICE_URL + "/review?productId=" + productId;
 
     LOG.debug("Will call the getReviews API on URL: {}", url);
 

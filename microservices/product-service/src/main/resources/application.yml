@@ -8,6 +8,7 @@ spring.data.mongodb:
   username: root
   password: "@Chudeptrai123"
   authentication-database: admin
+spring.application.name: product
 
 logging:
   level:
@@ -29,6 +30,15 @@ spring:
     username: guest
     password: guest
 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    initialInstanceInfoReplicationIntervalSeconds: 5
+    registryFetchIntervalSeconds: 5
+  instance:
+    leaseRenewalIntervalInSeconds: 5
+    leaseExpirationDurationInSeconds: 5
 ---
 
 spring:
@@ -58,3 +68,8 @@ spring:
     password: guest
 server:
   port: 8080
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka:8761/eureka/
