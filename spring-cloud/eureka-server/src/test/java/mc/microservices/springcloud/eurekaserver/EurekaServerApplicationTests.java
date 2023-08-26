@@ -1,4 +1,4 @@
-package mc.springcloud.eurekaserver;
+package mc.microservices.springcloud.eurekaserver;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

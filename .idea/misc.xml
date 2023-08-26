@@ -25,6 +25,7 @@
         <option value="$PROJECT_DIR$/product-composite/pom.xml" />
         <option value="$PROJECT_DIR$/product-service/pom.xml" />
         <option value="$PROJECT_DIR$/recomendation-service/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-cloud/eureka-server/pom.xml" />
       </set>
     </option>
   </component>
